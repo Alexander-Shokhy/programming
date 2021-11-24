@@ -46,7 +46,7 @@ int main(int argc, char **argv)
         if (!pid)
         {
             msgrcv(qid, &buf, length, i+1, 0);
-            printf("Это дочерний процесс №%d\n", i+1);
+            printf("%d ", i+1);
             msgsnd(qid, &buf, length, 0);
             return 0;
         }
