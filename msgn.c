@@ -16,14 +16,16 @@ typedef struct mymsgbuf
 int main(int argc, char **argv)
 {
     int qid;//IPC дескриптор для очереди сообщений
-    key_t msgkey;//ключ
+    //key_t msgkey;//ключ
     pid_t pid;
     mess_t buf;
     int length;
     int i, n;
-    length = sizeof(mess_t) - sizeof(long);
-    msgkey = ftok(".",'m');
-    qid = msgget(msgkey, IPC_CREAT | 0660);
+    //length = sizeof(mess_t) - sizeof(long);
+    length = sizeof(mess_t);
+    //msgkey = ftok(".",'m');
+    //qid = msgget(msgkey, IPC_CREAT | 0660);
+    qid = msgget(IPC_PRIVATE, IPC_CREAT | 0660);
 
         n = atoi(argv[1]);
 
