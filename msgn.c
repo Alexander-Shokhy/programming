@@ -21,8 +21,15 @@ int main(int argc, char **argv)
     mess_t buf;
     int length;
     int i, n;
-    //length = sizeof(mess_t) - sizeof(long);
     length = sizeof(mess_t);
+
+    if (argc != 2)
+    {
+        fprintf (stderr, "Должно быть 2 аргумента: путь к фалу и количество потомков\n");
+        return(-1);
+    }
+
+
     //msgkey = ftok(".",'m');
     //qid = msgget(msgkey, IPC_CREAT | 0660);
     qid = msgget(IPC_PRIVATE, IPC_CREAT | 0660);
@@ -47,6 +54,7 @@ int main(int argc, char **argv)
         {
             msgrcv(qid, &buf, length, i+1, 0);
             printf("%d ", i+1);
+            fflush(stdout);
             msgsnd(qid, &buf, length, 0);
             return 0;
         }
@@ -60,6 +68,7 @@ int main(int argc, char **argv)
             msgrcv(qid, &buf, length, i+1, 0);
         }
         msgctl(qid, IPC_RMID, 0);
+        printf("\n");
 
         return 0;
 }
