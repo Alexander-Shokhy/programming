@@ -21,7 +21,7 @@ int main(int argc, char **argv)
     mess_t buf;
     int length;
     int i, n;
-    length = sizeof(mess_t);
+    length = sizeof(buf.num);
 
     if (argc != 2)
     {
