@@ -16,7 +16,7 @@ int j = byte, s = 0;
 pid_t pid;
 
 // SIGUSR1
-void true(int n)
+void true(int signo)
 {
   s += j;
   j /= 2;
@@ -24,33 +24,32 @@ void true(int n)
 }
 
 // SIGUSR2
-void false(int n)
+void false(int signo)
 {
   j /= 2;
   kill(pid, SIGUSR1);
 }
 
 // SIGCHLD
-void childexit(int n)
+void childexit(int signo)
 {
   exit(0);
 }
 
 // SIGALRM
-void parentexit(int n)
+void parentexit(int signo)
 {
   exit(0);
 }
 
 
-void nothing(int n)
+void nothing(int signo)
 {}
-
 
 int main(int argc, char ** argv)
 {
         unsigned int i, fd;
-        char c = 0;
+        char c;
         pid_t ppid;
         sigset_t set;
 
@@ -136,7 +135,7 @@ int main(int argc, char ** argv)
                 {
                         alarm(1);
 
-                        for (i = 128; i >= 1; i /= 2)
+                        for (i = byte; i >= 1; i /= 2)
                         {
                                 if (i & c)
                                         kill(ppid, SIGUSR1);
@@ -164,4 +163,4 @@ int main(int argc, char ** argv)
 
         return 0;
 }
-                                                                                                                                                                                                                                                                                               162,3-10    Внизу
+                                                                                                                                                                                                                                                                                               165,1       Внизу
