@@ -12,7 +12,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
-int j = byte, s = 0;
+int j, s;
 pid_t pid;
 
 // SIGUSR1
