@@ -15,7 +15,6 @@
 int j, s;
 pid_t pid;
 
-// SIGUSR1
 void true(int signo)
 {
   s += j;
@@ -23,20 +22,17 @@ void true(int signo)
   kill(pid, SIGUSR1);
 }
 
-// SIGUSR2
 void false(int signo)
 {
   j /= 2;
   kill(pid, SIGUSR1);
 }
 
-// SIGCHLD
 void childexit(int signo)
 {
   exit(0);
 }
 
-// SIGALRM
 void parentexit(int signo)
 {
   exit(0);
